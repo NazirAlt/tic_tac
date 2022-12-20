@@ -13,7 +13,7 @@ class Game extends StatefulWidget {
 
 class _GameState extends State<Game> {
   static var customFontWhite = GoogleFonts.coiny(
-    textStyle: TextStyle(
+    tetStyle: TextStyle(
       color: Colors.white,
       letterSpacing: 3,
       fontSize: 28,
@@ -23,37 +23,67 @@ class _GameState extends State<Game> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColor.primaryColor,
-      body: Column(children: [
-        Expanded(
-          flex: 1,
-          child: Text('Score board'),
-        ),
-        Expanded(
-          flex: 3,
-          child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(children: [
+          Expanded(
+            flex: 1,
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'player 0',
+                        style: customFontWhite,
+                      ),
+                      Text(
+                        '0 score ',
+                        style: customFontWhite,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
               ),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        width: 5,
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 5,
+                          color: MainColor.secondaryColor,
+                        ),
                         color: MainColor.secondaryColor,
                       ),
-                      color: MainColor.secondaryColor,
+                      child: Center(
+                        child: Text(
+                          '0',
+                          style: GoogleFonts.coiny(
+                              textStyle: TextStyle(
+                                  fontSize: 64, color: MainColor.primaryColor)),
+                        ),
+                      ),
                     ),
-                    child: Center(
-                      child: Text('0'),
-                    ),
-                  ),
-                );
-              }),
-        ),
-      ]),
+                  );
+                }),
+          ),
+        ]),
+      ),
     );
   }
 }
